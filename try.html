@@ -759,179 +759,54 @@
             margin-right: 10px;
         }
 
-        /* ---------- GALLERY FRONT PAGE (4x2 grid) ---------- */
-        .gallery-front-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-        .gallery-front-item {
+        /* Gallery Items - Enhanced */
+        .gallery-item {
             background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(26,95,122,0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             transition: all 0.4s;
-            border: 2px solid transparent;
-            background: linear-gradient(white, white) padding-box, 
-                        linear-gradient(135deg, #1a5f7a, #ffd700) border-box;
-            aspect-ratio: 1 / 1;
-            width: 100%;
-            cursor: pointer;
-        }
-        .gallery-front-item:hover {
-            transform: scale(1.02) translateY(-6px);
-            box-shadow: 0 25px 50px rgba(255,215,0,0.3);
-        }
-        .gallery-front-img {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-color: #1a5f7a;
-            transition: transform 0.6s;
-        }
-        .gallery-front-item:hover .gallery-front-img {
-            transform: scale(1.08);
-        }
-
-        /* ---------- LIGHTBOX / FULL GALLERY PAGE (hidden by default) ---------- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 10000;
-            overflow-y: auto;
-            padding: 50px 30px;
-            backdrop-filter: blur(8px);
-        }
-        .lightbox.active {
-            display: block;
-        }
-        .lightbox-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1300px;
-            margin: 0 auto 30px auto;
-            color: white;
-        }
-        .lightbox-header h2 {
-            font-size: 2rem;
-            color: #ffd700;
-            font-weight: 600;
-        }
-        .close-lightbox {
-            background: transparent;
-            border: none;
-            color: #ffd700;
-            font-size: 3rem;
-            cursor: pointer;
-            transition: 0.3s;
-            line-height: 1;
-        }
-        .close-lightbox:hover {
-            color: red;
-            transform: scale(1.2);
-        }
-        .lightbox-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .lightbox-item {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            box-shadow: 0 10px 30px rgba(255,215,0,0.2);
-            border: 2px solid #ffd700;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .lightbox-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(255,215,0,0.4);
-        }
-        .lightbox-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* ---------- IMAGE ZOOM LIGHTBOX (for single image) ---------- */
-        .zoom-lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 11000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .zoom-lightbox.active {
-            display: flex;
-        }
-        .zoom-content {
+            border: 1px solid rgba(255,215,0,0.2);
             position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
+            overflow: hidden;
         }
-        .zoom-content img {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 90vh;
-            border: 4px solid #ffd700;
-            border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
-        .close-zoom {
+        .gallery-item::before {
+            content: '';
             position: absolute;
-            top: -40px;
-            right: -40px;
-            background: transparent;
-            border: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26,95,122,0.05), rgba(255,215,0,0.05));
+            transform: scale(0);
+            transition: transform 0.4s;
+            border-radius: 20px;
+        }
+        .gallery-item:hover::before {
+            transform: scale(1);
+        }
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #1a5f7a;
+            box-shadow: 0 30px 50px rgba(26,95,122,0.15);
+        }
+        .gallery-item i {
+            font-size: 4rem;
+            color: #1a5f7a;
+            margin-bottom: 15px;
+            transition: all 0.4s;
+            display: inline-block;
+        }
+        .gallery-item:hover i {
+            transform: scale(1.2) rotateY(180deg);
             color: #ffd700;
-            font-size: 3rem;
-            cursor: pointer;
-            transition: 0.3s;
-            line-height: 1;
         }
-        .close-zoom:hover {
-            color: red;
-            transform: scale(1.2);
+        .gallery-item p {
+            color: #222;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
-        @media screen and (max-width: 768px) {
-            .close-zoom {
-                top: -50px;
-                right: 0;
-            }
-        }
-
-        /* Responsive for grids */
-        @media screen and (max-width: 992px) {
-            .gallery-front-grid, .lightbox-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media screen and (max-width: 576px) {
-            .gallery-front-grid, .lightbox-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-        /* ---------- end gallery ---------- */
 
         /* Contact Section - Enhanced Premium */
         .contact-grid {
@@ -1129,8 +1004,8 @@
             margin-bottom: 25px;
         }
         .footer-logo-image {
-            width: 120px;
-            height: 72px;
+            width: 80px;
+            height: 80px;
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHOSURBVHgB7d27btwwFIXhQ+UuXa5SpE6RKl2qVOk8qdK5SxUoUOANFCjwxgECvIEjUwzGkCjZvB+J3wFYc03K8hHgBcmkUqmDfd/vpmn6cYqiKIr6f+o8z3eXy+X7eZ5/73mePwCgJ5fL5d/zPP/rui4BwFZ0XZcA4H26rksA8D5d1yUAeJ+u6xIAvE/XdQkA3qfrV4nneX7bdd2Pruv+7LruPtd1XZcA4H26rksA8D5d1yUAeJ+u6xIAvE/XdQkA3qfrV4nned513e+u6352Xfeb67pE1wGgZdf1DwDgFF3XJQB4n65fJcZx/DB0XZcA4H26rksA8D5d1yUAeJ+u6xIAvE/XdQkA3qfrV4l5nn923feT67pEdB0A2nVdAoD36fpVYp7nx67rHrquSwDwPl3XJQB4n65fJcZx/Dh03V3XdQkA3qfrV4mu6xIAvE/XrxJd1yUAeJ+u6xIAvE/Xr9J13RMAvE/XrxJd1yUAeJ+u6xIAvE/Xr9J13RMAvE/XrxJd1yUAeJ+u6xIAvE/Xr1LXdQkA3qfrV4mu6xIAvE/XrxJd1yUAeJ+u6xIAvE/XdQkA3qfrV4mu6xIAvE/XrxJd1yUAeJ+uX6Wu6xIAvE/XrxJd1yUAeJ+u6xIAvE/XrxLnef7Ydd1H13WJ6DoAtOs6AMDb/wGp0fTukB7ABwAAAABJRU5ErkJggg==');
             background-size: contain;
             background-position: center;
@@ -1518,45 +1393,33 @@
         </div>
     </section>
 
-    <!-- Gallery Front Page - 4x2 grid (8 images) -->
+    <!-- Gallery -->
     <section id="gallery">
         <div class="container">
             <div class="section-title">
                 <h2>Our Gallery</h2>
-                <p>Click on any image to open the full gallery</p>
+                <p>Glimpses of our facility and compassionate care</p>
             </div>
-            <div class="gallery-front-grid" id="frontGalleryGrid">
-                <!-- 8 items for front page (2 rows x 4) -->
-                <div class="gallery-front-item" data-index="0"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="1"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="2"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="3"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="4"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="5"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="6"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1516549655169-df83a0774514?w=400&q=80');"></div></div>
-                <div class="gallery-front-item" data-index="7"><div class="gallery-front-img" style="background-image: url('https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=400&q=80');"></div></div>
+            <div class="grid-4">
+                <div class="gallery-item">
+                    <i class="fas fa-hospital"></i>
+                    <p>Operation Theatre</p>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-user-nurse"></i>
+                    <p>Medical Team</p>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-procedures"></i>
+                    <p>ICU Facility</p>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-wheelchair"></i>
+                    <p>Patient Care</p>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Lightbox / Full Gallery Page (hidden initially) -->
-    <div class="lightbox" id="galleryLightbox">
-        <div class="lightbox-header">
-            <h2><i class="fas fa-images"></i> SRS Hospital Complete Gallery</h2>
-            <button class="close-lightbox" id="closeLightbox">&times;</button>
-        </div>
-        <div class="lightbox-grid" id="lightboxGrid">
-            <!-- All 20 images will be injected via JavaScript -->
-        </div>
-    </div>
-
-    <!-- Zoom Lightbox for single large image -->
-    <div class="zoom-lightbox" id="zoomLightbox">
-        <div class="zoom-content">
-            <button class="close-zoom" id="closeZoom">&times;</button>
-            <img id="zoomImage" src="" alt="Large view">
-        </div>
-    </div>
 
     <!-- Contact Us -->
     <section id="contact" style="background: linear-gradient(135deg, #f0f4f8, #e6ecf5);">
@@ -1686,7 +1549,9 @@
                 navMenu.classList.remove('active');
                 mobileMenu.classList.remove('fa-times');
                 
+                // Remove active class from all links
                 document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+                // Add active class to clicked link
                 this.classList.add('active');
             });
         });
@@ -1724,96 +1589,6 @@
                     });
                 }
             });
-        });
-
-        // ---------- GALLERY LIGHTBOX (full gallery) ----------
-        const lightbox = document.getElementById('galleryLightbox');
-        const closeBtn = document.getElementById('closeLightbox');
-        const lightboxGrid = document.getElementById('lightboxGrid');
-        const zoomLightbox = document.getElementById('zoomLightbox');
-        const zoomImage = document.getElementById('zoomImage');
-        const closeZoom = document.getElementById('closeZoom');
-        
-        // Array of 20 high-quality image URLs (you can replace these with your own)
-        const galleryImages = [
-            'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
-            'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&q=80',
-            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80',
-            'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=1200&q=80',
-            'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1200&q=80',
-            'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80',
-            'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1200&q=80',
-            'https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=1200&q=80',
-            'https://images.unsplash.com/photo-1584636633447-6e4dab37e8a1?w=1200&q=80',
-            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80',
-            'https://images.unsplash.com/photo-1581056771107-24247db4f3ea?w=1200&q=80',
-            'https://images.unsplash.com/photo-1511174511562-5f7f1a1b7b7e?w=1200&q=80',
-            'https://images.unsplash.com/photo-1551076805-e1869033e561?w=1200&q=80',
-            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80',
-            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80',
-            'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1200&q=80',
-            'https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=1200&q=80',
-            'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
-            'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&q=80',
-            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80'
-        ];
-
-        // Populate lightbox grid
-        function renderLightbox() {
-            lightboxGrid.innerHTML = '';
-            galleryImages.forEach((src, index) => {
-                const item = document.createElement('div');
-                item.className = 'lightbox-item';
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = 'Gallery Image';
-                img.dataset.src = src; // store full res
-                // Add click to open zoom
-                img.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    zoomImage.src = src;
-                    zoomLightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-                item.appendChild(img);
-                lightboxGrid.appendChild(item);
-            });
-        }
-        renderLightbox();
-
-        // Open lightbox when any front gallery item is clicked
-        document.querySelectorAll('.gallery-front-item').forEach(item => {
-            item.addEventListener('click', () => {
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // prevent background scroll
-            });
-        });
-
-        // Close full gallery lightbox
-        closeBtn.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close if clicked outside content (full gallery)
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Close zoom lightbox
-        closeZoom.addEventListener('click', () => {
-            zoomLightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        zoomLightbox.addEventListener('click', (e) => {
-            if (e.target === zoomLightbox) {
-                zoomLightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
         });
     </script>
 </body>
